@@ -48,7 +48,13 @@ while total_time < SECONDS_IN_DAY*60: # Go for 60 days
     tic = toc
 
     ## Step 2: Apply the laws of physics
-    
+    ## Figure out the acceleration
+    r = p_earth - p
+    rMag = np.sqrt( np.sum(r**2) )
+    a = (G*M/rMag**3)*r
+    ## Update velocity and then position based on Euler steps
+    v = v + dt*a
+    p = p + dt*v    
 
     ## Step 3: Update the graphics.  Change the position
     ## of the moon, and update the position/text of the label
